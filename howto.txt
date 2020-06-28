@@ -1,0 +1,11 @@
+How to:
+login to www.mywellness.com using Chrome base browser
+Go to specific workout to download the data
+Open developer tool go to Network tab and All
+put "Training/CardioLog" under the filter
+reload the page
+copy the url, one of the result should be something like:
+"https://services.mywellness.com/Training/CardioLog/5ef56431fc86ac12e8a7600c/Details?facilityId=xxxxx&_c=en-US&AppId=xxxxxx&token=xxxxx&_=xxxxx
+Using linux shell or wsl with jq installed run:
+curl "url" | jq -r '["Minutes", "Torq (N-m)","Km/h","Watts","Km","Cadence","Hrate","ID"], (.data.analitics.samples[] | [.vs[], .t] | [.[3] / 60, 0, 0, .[0], .[2] / 1000, .[1], 0, 0]) | @tsv|gsub("\t";",")' output.csv
+drop output.csv file under trainingpeaks calendar
