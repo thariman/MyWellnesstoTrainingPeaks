@@ -8,4 +8,7 @@ copy the url, one of the result should be something like:
 "https://services.mywellness.com/Training/CardioLog/5ef56431fc86ac12e8a7600c/Details?facilityId=xxxxx&_c=en-US&AppId=xxxxxx&token=xxxxx&_=xxxxx
 Using linux shell or wsl with jq installed run:
 curl -s "url" | jq -r '["Minutes", "Torq (N-m)","Km/h","Watts","Km","Cadence","Hrate","ID"], (.data.analitics.samples[] | [.vs[], .t] | [.[3] / 60, 0, 0, .[0], .[2] / 1000, .[1], 0, 0]), (.data.analitics.hr[] | [.hr, .t] | [.[1] / 60, 0, 0, 0, 0, 0, .[0], 0]) | @tsv|gsub("\t";",")' > output.csv
+
+
+
 drop output.csv file under trainingpeaks calendar
