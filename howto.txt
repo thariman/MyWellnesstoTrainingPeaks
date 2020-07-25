@@ -1,6 +1,7 @@
 How to:
 login to www.mywellness.com using Chrome base browser
 Go to specific workout to download the data
+Only Bike Artis that have the detail
 Open developer tool go to Network tab and All
 put "Training/CardioLog" under the filter
 reload the page
